@@ -4,23 +4,22 @@ package com.CrudUefa;
 import java.util.Scanner;
 
 import com.CrudUefa.application.usecase.equipocase.EquipoUseCase;
-import com.CrudUefa.application.usecase.jugadorcase.JugadoresUseCase;
+
 
 import com.CrudUefa.domain.repository.EquipoRespository;
 import com.CrudUefa.infrastructure.database.ConnectionFactory;
 import com.CrudUefa.infrastructure.persistence.Equipo.EquipoRepositoryImpl;
-import com.CrudUefa.infrastructure.persistence.jugadores.JugadoresRepositoryImpl;
+
 
 
 
 public class Main {
     public static void main(String[] args) {
         EquipoRespository equipoRepository = new EquipoRepositoryImpl(ConnectionFactory.crearConexion());
-        EquipoRepositoryImpl equipoRepositoryImpl= new EquipoRepositoryImpl(ConnectionFactory.crearConexion());
+       
+       
 
-        JugadoresRepositoryImpl jugadorRepository = new JugadoresRepositoryImpl(ConnectionFactory.crearConexion());
-
-        JugadoresUseCase jugadoresUseCase = new JugadoresUseCase(jugadorRepository);
+        
         EquipoUseCase equipoUseCase = new EquipoUseCase(equipoRepository);
 
        
