@@ -1,40 +1,31 @@
 package com.CrudUefa;
 
-
 import java.util.Scanner;
 
 import com.CrudUefa.application.usecase.equipocase.EquipoUseCase;
-
 
 import com.CrudUefa.domain.repository.EquipoRespository;
 import com.CrudUefa.infrastructure.database.ConnectionFactory;
 import com.CrudUefa.infrastructure.persistence.Equipo.EquipoRepositoryImpl;
 
-
-
-
 public class Main {
     public static void main(String[] args) {
         EquipoRespository equipoRepository = new EquipoRepositoryImpl(ConnectionFactory.crearConexion());
-       
-       
 
-        
         EquipoUseCase equipoUseCase = new EquipoUseCase(equipoRepository);
 
-       
         try (Scanner teclado = new Scanner(System.in)) {
             int option;
 
             do {
-                System.out.println("---------------------------------");
-                System.out.println("-     MENU PRINCIPAL            -");
-                System.out.println("---------------------------------");
+                System.out.println("-----------------------------");
+                System.out.println("-     MENU PRINCIPAL        -");
+                System.out.println("-----------------------------");
                 System.out.println("Seleccione una opción:");
                 System.out.println("1. Gestión de Equipos");
                 System.out.println("2. Gestión de Jugadores");
                 System.out.println("0. Salir");
-                System.out.println("----------------------------------");
+                System.out.println("-----------------------------");
                 System.out.print("Ingrese opción: ");
 
                 while (!teclado.hasNextInt()) {
@@ -42,11 +33,11 @@ public class Main {
                     teclado.next();
                 }
                 option = teclado.nextInt();
-                teclado.nextLine(); 
+                teclado.nextLine();
 
                 switch (option) {
                     case 1:
-                    
+
                         menuEquipos(teclado, equipoUseCase);
                         break;
                     case 2:
@@ -82,20 +73,20 @@ public class Main {
                 teclado.next();
             }
             option = teclado.nextInt();
-            teclado.nextLine(); 
+            teclado.nextLine();
 
             switch (option) {
                 case 1:
                     System.out.println("Ingrese el nombre del equipo: ");
                     String name = teclado.nextLine();
-     
-                    System.out.println("Ingrese el Año de fundacion del equipo: ");
-                    int yearfoundation = teclado.nextInt();
 
                     System.out.println("Ingrese el coach del equipo: ");
                     String coach = teclado.nextLine();
 
-                     equipoUseCase.guardar(yearfoundation, name, coach);
+                    System.out.println("Ingrese el Año de fundacion del equipo: ");
+                    int yearfoundation = teclado.nextInt();
+
+                    equipoUseCase.guardar(yearfoundation, coach, name);
                     System.out.println("EQUIPO REGISTRADO CON ÉXITO");
                     break;
 
@@ -103,7 +94,7 @@ public class Main {
                     System.out.println("Lista de Equipos: ");
                     // List<Equipo> equipos = clientUseCase.listarClientes();
                     // for (Equipo equipo : equipos) {
-                    //     System.out.println(equipo);
+                    // System.out.println(equipo);
                     // }
                     break;
 
@@ -116,9 +107,9 @@ public class Main {
                     String nombre = teclado.nextLine();
 
                     System.out.println("Ingrese el nuevo coach: ");
-                     coach = teclado.nextLine();
+                    coach = teclado.nextLine();
 
-                     EquipoUseCase.actualizarEquipos(id, nombre, coach);
+                    EquipoUseCase.actualizarEquipos(id, nombre, coach);
                     System.out.println("EQUIPO ACTUALIZADO CON ÉXITO");
                     break;
 
@@ -165,8 +156,8 @@ public class Main {
 
             switch (option) {
                 case 1:
-                    System.out.println("Ingrese el ID del jugador: ");
-                    int id = teclado.nextInt();
+                    System.out.println("Ingrese  ID del equipo que desea inscribir el jugador: ");
+                    int equipo_id = teclado.nextInt();
                     teclado.nextLine();
 
                     System.out.println("Ingrese el nombre del jugador: ");
@@ -183,13 +174,13 @@ public class Main {
                     System.out.println("Lista de jugadores:");
                     // List<Jugador> jugadores = productUseCase.listarProductos();
                     // for (Jugador jugador : jugadores) {
-                    //     System.out.println(jugador);
+                    // System.out.println(jugador);
                     // }
                     break;
 
                 case 3:
                     System.out.println("Ingrese el ID del jugador que desea eliminar: ");
-                    id = teclado.nextInt();
+                    int id = teclado.nextInt();
                     teclado.nextLine();
 
                     // productUseCase.eliminarproducto(id);

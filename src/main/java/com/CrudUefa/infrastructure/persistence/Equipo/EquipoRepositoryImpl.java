@@ -20,13 +20,12 @@ public class EquipoRepositoryImpl implements EquipoRespository {
     }
     @Override
     public void guardar(Equipo equipo) {
-        String sql = "INSERT INTO equipos ( name, year_foundation, coach) VALUES (?, ?, ?)";
+        String sql = "INSERT INTO equipos ( name, coach,year_foundation) VALUES (?, ?, ?)";
         try (Connection conexion = connection.getConexion();
              PreparedStatement stmt = conexion.prepareStatement(sql)) {
-        
             stmt.setString(1, equipo.getName());
-            stmt.setInt(2, equipo.getYearfoundation());
-            stmt.setString(3, equipo.getCoach());
+            stmt.setString(2, equipo.getCoach());
+            stmt.setInt(3, equipo.getYearfoundation());
             stmt.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();

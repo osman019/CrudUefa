@@ -36,7 +36,7 @@ public class JugadoresRepositoryImpl implements JugadoresRepository {
 
     @Override
     public Jugadores buscarPorId(int id) {
-        String sql = "SELECT * FROM players WHERE id = ?";
+        String sql = "SELECT * FROM jugadores WHERE id = ?";
         try (Connection conexion = connection.getConexion();
                 PreparedStatement stmt = conexion.prepareStatement(sql)) {
             stmt.setInt(1, id);
