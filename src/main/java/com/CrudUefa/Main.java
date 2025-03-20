@@ -46,6 +46,7 @@ public class Main {
 
                 switch (option) {
                     case 1:
+                    
                         menuEquipos(teclado, equipoUseCase);
                         break;
                     case 2:
